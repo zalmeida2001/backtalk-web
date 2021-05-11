@@ -5,10 +5,10 @@ import '../App.css';
 let socket;
 const PORT = 'localhost:3001/';
 
-function App() {
+function Messages() {
 
 
 
 }
 
-export default App;
+export default Messages;

@@ -20,7 +20,7 @@ app.use(cookieParser())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(session({
   key: "userId",
-  secret: "longsecret",
+  secret: "temporarySecret",
   resave: false,
   saveUninitialized: false,
   cookie: {
@@ -31,8 +31,6 @@ app.use(session({
 const db = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  //user: 'zalmeida',
-  //password: '1a2b3c4d',
   database: 'backtalk'
 })
 
