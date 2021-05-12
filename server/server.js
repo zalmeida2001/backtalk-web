@@ -9,6 +9,7 @@ const session = require('express-session')
 const customId = require('custom-id')
 const bcrypt = require('bcrypt')
 const saltRounds = 10
+const PORT = 3001;
 
 app.use(express.json())
 app.use(cors({
@@ -16,6 +17,7 @@ app.use(cors({
   methods: ["GET", "POST"],
   credentials: true
 }))
+
 app.use(cookieParser())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(session({
@@ -89,30 +91,37 @@ app.get('/messages', (req, res) => {
   res.render('Messages')
 })
 
-const server = app.listen('3001', () => {
-  console.log("Server running on port 3001.")
-})
 
-/*
-io = socket(server)
+
+const server = require("http").createServer();
+const io = require("socket.io")(server, {
+  cors: {
+    origin: "*",
+  },
+});
+
+
+const NEW_CHAT_MESSAGE_EVENT = "newChatMessage";
 
 io.on("connection", (socket) => {
+  console.log(`Client ${socket.id} connected`);
 
-  console.log(socket.id)
+  // Join a conversation
+  const { roomId } = socket.handshake.query;
+  socket.join(roomId);
 
-  socket.on("join_room", (data) => {
-    socket.join(data);
-    console.log("User Joined Room: " + data)
-  })
+  // Listen for new messages
+  socket.on(NEW_CHAT_MESSAGE_EVENT, (data) => {
+    io.in(roomId).emit(NEW_CHAT_MESSAGE_EVENT, data);
+  });
 
-  socket.on("send_message", (data) => {
-    console.log(data)
-    socket.to(data.room).emit("receive_message", data.content)
-  })
-
+  // Leave the room if the user closes the socket
   socket.on("disconnect", () => {
-    console.log("USER DISCONNECTED");
-  })
+    console.log(`Client ${socket.id} diconnected`);
+    socket.leave(roomId);
+  });
+});
 
-})
-*/
+server.listen(PORT, () => {
+  console.log(`Listening on port ${PORT}`);
+});

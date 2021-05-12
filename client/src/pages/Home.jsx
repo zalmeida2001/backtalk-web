@@ -1,5 +1,5 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 function Home() {
 
@@ -13,6 +13,9 @@ function Home() {
           <li>
             <Link to="/register">Register</Link>
           </li>
+          <li>
+            <Link to="/messages">Messages</Link>
+          </li>
         </ul>
       </nav>
     </div>
@@ -20,4 +23,4 @@ function Home() {
 
 }
 
-export default Home;
+export default Home

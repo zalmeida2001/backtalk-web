@@ -1,14 +1,29 @@
-import React, { useState, useEffect } from 'react';
-import io from 'socket.io-client';
-import '../App.css';
+import React from "react";
+import { Link } from "react-router-dom";
 
-let socket;
-const PORT = 'localhost:3001/';
+//import "./Home.css";
 
-function Messages() {
+const Home = () => {
+  const [roomName, setRoomName] = React.useState("");
 
+  const handleRoomNameChange = (event) => {
+    setRoomName(event.target.value);
+  };
 
+  return (
+    <div className="home-container">
+      <input
+        type="text"
+        placeholder="Room"
+        value={roomName}
+        onChange={handleRoomNameChange}
+        className="text-input-field"
+      />
+      <Link to={`/${roomName}`} className="enter-room-button">
+        Join room
+      </Link>
+    </div>
+  );
+};
 
-}
-
-export default Messages;
+export default Home;
