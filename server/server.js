@@ -91,15 +91,24 @@ app.get('/messages', (req, res) => {
   res.render('Messages')
 })
 
+const server = app.listen(PORT, () => {
+  console.log(`Listening on port ${PORT}`);
+});
+const io = socket(server, {
+  cors: {
+    origin: "*",
+  }
+})
 
-
+/*
 const server = require("http").createServer();
+
 const io = require("socket.io")(server, {
   cors: {
     origin: "*",
   },
 });
-
+*/
 
 const NEW_CHAT_MESSAGE_EVENT = "newChatMessage";
 
@@ -120,8 +129,4 @@ io.on("connection", (socket) => {
     console.log(`Client ${socket.id} diconnected`);
     socket.leave(roomId);
   });
-});
-
-server.listen(PORT, () => {
-  console.log(`Listening on port ${PORT}`);
 });
