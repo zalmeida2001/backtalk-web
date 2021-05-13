@@ -1,7 +1,7 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import Axios from 'axios'
-import {Link} from 'react-router-dom'
-import {Container, Button, Form, InputGroup} from 'react-bootstrap'
+import { Link } from 'react-router-dom'
+import { Container, Button, Form } from 'react-bootstrap'
 
 
 function Register() {
@@ -10,35 +10,37 @@ function Register() {
   const [usernameReg, setUsernameReg] = useState('')
   const [passwordReg, setPasswordReg] = useState('')
   const [passwordConfReg, setPasswordConfReg] = useState('')
-  
+
   const register = () => {
     Axios.post('http://localhost:3001/register', {
       email: emailReg,
-      username: usernameReg, 
+      username: usernameReg,
       password: passwordReg,
       passwordConf: passwordConfReg
     }).then((response) => {
       console.log(response)
     })
   }
-  
+
   return (
-    
+
     <Container>
-      <InputGroup className="mt-3">
-        <Form.Control placeholder="Username" type="text" onChange={(e) => {(setUsernameReg(e.target.value))}}/>
-      </InputGroup>
-      <InputGroup className="mt-3 mb-3">
-        <Form.Control placeholder="Email" type="text" onChange={(e) => {(setEmailReg(e.target.value))}}/>
-      </InputGroup>
-      <InputGroup className="mt-3 mb-3">
-        <Form.Control placeholder="Password" type="password" onChange={(e) => {(setPasswordReg(e.target.value))}}/>
-      </InputGroup>
-      <InputGroup className="mt-3 mb-3">
-        <Form.Control placeholder="Confirm Password" type="password"onChange={(e) => {(setPasswordConfReg(e.target.value))}}/>
-      </InputGroup>
-      <Button className="mr-3" onClick={register}>Register</Button>
-      <Link to={"/login"}><Button className="mr-3" variant="secondary">Return to Login</Button></Link>
+      <Form>
+        <Form.Group className="mt-3">
+          <Form.Control placeholder="Username" type="text" onChange={(e) => { (setUsernameReg(e.target.value)) }} />
+        </Form.Group>
+        <Form.Group className="mt-3 mb-3">
+          <Form.Control placeholder="Email" type="text" onChange={(e) => { (setEmailReg(e.target.value)) }} />
+        </Form.Group>
+        <Form.Group className="mt-3 mb-3">
+          <Form.Control placeholder="Password" type="password" onChange={(e) => { (setPasswordReg(e.target.value)) }} />
+        </Form.Group>
+        <Form.Group className="mt-3 mb-3">
+          <Form.Control placeholder="Confirm Password" type="password" onChange={(e) => { (setPasswordConfReg(e.target.value)) }} />
+        </Form.Group>
+        <Button className="mr-3" onClick={register}>Register</Button>
+        <Link to={"/login"}><Button className="mr-3" variant="secondary">Return to Login</Button></Link>
+      </Form>
     </Container>
 
   )

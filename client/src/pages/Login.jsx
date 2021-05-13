@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Axios from 'axios'
-import { Link } from 'react-router-dom'
-import { Container, Button, Form, InputGroup, Badge } from 'react-bootstrap'
+import { Link, Redirect } from 'react-router-dom'
+import { Container, Button, Form, Badge } from 'react-bootstrap'
 
 function Login() {
 
@@ -24,6 +24,10 @@ function Login() {
     })
   }
 
+  const deleteCookie = () => {
+    //Deletes login cookie
+  }
+
   useEffect(() => {
     Axios.get("http://localhost:3001/login").then((response) => {
       if (response.data.loggedIn === true)
@@ -33,15 +37,18 @@ function Login() {
 
   return (
     <Container>
-      <InputGroup className="mt-3">
-        <Form.Control placeholder="Email" type="text" onChange={(e) => { (setEmailLog(e.target.value)) }} />
-      </InputGroup>
-      <InputGroup className="mt-3 mb-3">
-        <Form.Control placeholder="Password" type="password" onChange={(e) => { (setPasswordLog(e.target.value)) }} />
-      </InputGroup>
-      <Button className="mr-3" onClick={login}>Login</Button>
-      <Link to={"/register"}><Button className="mr-3" variant="secondary">Register</Button></Link>
-      <Badge>{loginStatus}</Badge>
+      <Form>
+        <Form.Group className="mt-3">
+          <Form.Control placeholder="Email" type="text" onChange={(e) => { (setEmailLog(e.target.value)) }} />
+        </Form.Group>
+        <Form.Group className="mt-3 mb-3">
+          <Form.Control placeholder="Password" type="password" onChange={(e) => { (setPasswordLog(e.target.value)) }} />
+        </Form.Group>
+        <Button className="mr-3" onClick={login}>Login</Button>
+        <Link to={"/register"}><Button className="mr-3" variant="secondary">Register</Button></Link>
+        <Button className="mr-3" onClick={deleteCookie} variant="danger">Log Out</Button>
+        <Badge>{loginStatus}</Badge>
+      </Form>
     </Container>
   )
 

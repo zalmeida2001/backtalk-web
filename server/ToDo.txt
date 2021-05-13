@@ -1,0 +1,12 @@
+Priority 1:
+Integrate user accounts with chat
+Logout/destroy cookie
+
+Priority 2:
+Prevent duplicate entries for login and register
+
+Priority 3:
+Make inputs required for login/register
+Redirect after login/register
+Detect and prevent duplicate database entries, providing the proper warnings
+Only accept email addresses in the email address input box
