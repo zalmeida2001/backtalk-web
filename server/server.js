@@ -62,7 +62,6 @@ app.post('/register', (req, res) => {
       })
     })
   }
-  res.redirect('/login')
 })
 
 app.post('/login', (req, res) => {
@@ -96,19 +95,9 @@ const server = app.listen(PORT, () => {
 });
 const io = socket(server, {
   cors: {
-    origin: "*",
+    origin: "http://localhost:3000",
   }
 })
-
-/*
-const server = require("http").createServer();
-
-const io = require("socket.io")(server, {
-  cors: {
-    origin: "*",
-  },
-});
-*/
 
 const NEW_CHAT_MESSAGE_EVENT = "newChatMessage";
 

@@ -1,6 +1,8 @@
 Priority 1:
+Protected user account routes
 Integrate user accounts with chat
 Logout/destroy cookie
+Redirect to 404 and after login
 
 Priority 2:
 Prevent duplicate entries for login and register
@@ -10,3 +12,6 @@ Make inputs required for login/register
 Redirect after login/register
 Detect and prevent duplicate database entries, providing the proper warnings
 Only accept email addresses in the email address input box
+Grupos
+
+Do login and register redirects, make user account page with permission only from logged in and work from there.
