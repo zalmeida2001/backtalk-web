@@ -6,12 +6,13 @@ Redirect to 404 and after login
 
 Priority 2:
 Prevent duplicate entries for login and register
+Change login forms so that it only accepts emails
 
 Priority 3:
 Make inputs required for login/register
 Redirect after login/register
 Detect and prevent duplicate database entries, providing the proper warnings
-Only accept email addresses in the email address input box
-Grupos
+Groups
+Confirm password
 
 Do login and register redirects, make user account page with permission only from logged in and work from there.

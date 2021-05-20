@@ -20,6 +20,7 @@ function Register() {
     }).then((response) => {
       console.log(response)
     })
+    window.location = "/login"
   }
 
   return (
@@ -30,7 +31,7 @@ function Register() {
           <Form.Control placeholder="Username" type="text" onChange={(e) => { (setUsernameReg(e.target.value)) }} />
         </Form.Group>
         <Form.Group className="mt-3 mb-3">
-          <Form.Control placeholder="Email" type="text" onChange={(e) => { (setEmailReg(e.target.value)) }} />
+          <Form.Control placeholder="Email" type="email" onChange={(e) => { (setEmailReg(e.target.value)) }} />
         </Form.Group>
         <Form.Group className="mt-3 mb-3">
           <Form.Control placeholder="Password" type="password" onChange={(e) => { (setPasswordReg(e.target.value)) }} />

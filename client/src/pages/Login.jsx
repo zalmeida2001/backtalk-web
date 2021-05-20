@@ -39,7 +39,7 @@ function Login() {
     <Container>
       <Form>
         <Form.Group className="mt-3">
-          <Form.Control placeholder="Email" type="text" onChange={(e) => { (setEmailLog(e.target.value)) }} />
+          <Form.Control placeholder="Email" type="email" onChange={(e) => { (setEmailLog(e.target.value)) }} />
         </Form.Group>
         <Form.Group className="mt-3 mb-3">
           <Form.Control placeholder="Password" type="password" onChange={(e) => { (setPasswordLog(e.target.value)) }} />

@@ -8,6 +8,7 @@ const cookieParser = require('cookie-parser')
 const session = require('express-session')
 const customId = require('custom-id')
 const bcrypt = require('bcrypt')
+const jwt = require("jsonwebtoken")
 const saltRounds = 10
 const PORT = 3001;
 
@@ -73,6 +74,7 @@ app.post('/login', (req, res) => {
       bcrypt.compare(password, result[0].password, (error, response) => {
         if (response) {
           req.session.user = result
+
           console.log(req.session.user)
           res.send(result)
         } else {
