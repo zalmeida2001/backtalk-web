@@ -20,7 +20,11 @@ function Register() {
     }).then((response) => {
       console.log(response)
     })
-    window.location = "/login"
+    if (passwordReg !== passwordConfReg) {
+      alert("Passwords don't match!")
+    } else {
+      window.location = "/login"
+    }
   }
 
   return (
