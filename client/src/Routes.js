@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
 
 import Home from './pages/Home'
 import Login from './pages/Login'
@@ -17,11 +17,9 @@ class App extends Component {
         <Route exact path="/login" component={Login} />
         <Route exact path="/messages" component={Messages} />
         <Route exact path="/register" component={Register} />
-        <Route exact path="/:roomId" component={Chat} />
+        <Route exact path="/messages/:roomId" component={Chat} />
         <Route exact path="/404" component={NotFound} />
-        {
-          //<Redirect to="/404" />
-        }
+        <Redirect to="/404" />
       </Switch>
     </Router>
   }

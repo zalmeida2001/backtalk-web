@@ -1,7 +1,9 @@
+import { Link } from 'react-router-dom'
+
 function NotFound() {
 
   return (
-    "404"
+    <Link to="/">Return to Home</Link>
   )
 
 }
