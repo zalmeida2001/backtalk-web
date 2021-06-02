@@ -17,15 +17,16 @@ function Login() {
       password: passwordLog,
     }).then((response) => {
       if (response.data.message) {
-        alert(response.data.message)
+        setLoginStatus(response.data.message)
       } else {
         setLoginStatus(response.data[0].email)
       }
     })
   }
 
-  const deleteCookie = () => {
-    //Deletes login cookie
+  const logout = () => {
+    localStorage.clear('loggedIn')
+    window.location.href = '/login'
   }
 
   useEffect(() => {
@@ -46,7 +47,7 @@ function Login() {
         </Form.Group>
         <Button className="mr-3" onClick={login}>Login</Button>
         <Link to={"/register"}><Button className="mr-3" variant="secondary">Register</Button></Link>
-        <Button className="mr-3" onClick={deleteCookie} variant="danger">Log Out</Button>
+        <Button className="mr-3" onClick={logout} variant="danger">Log Out</Button>
         <Badge>{loginStatus}</Badge>
       </Form>
     </Container>

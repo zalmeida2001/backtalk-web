@@ -21,11 +21,13 @@ app.use(cors({
 app.use(cookieParser())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(session({
+  name: "loggedIn",
   key: "userId",
   secret: "temporarySecret",
   resave: false,
   saveUninitialized: false,
   cookie: {
+    sameSite: true,
     expires: 60 * 60 * 24
   }
 }))
