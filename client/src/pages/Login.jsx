@@ -17,9 +17,9 @@ function Login() {
       password: passwordLog,
     }).then((response) => {
       if (response.data.message) {
-        setLoginStatus(response.data.message)
+        alert(response.data.message)
       } else {
-        alert(response.data[0].email)
+        setLoginStatus(response.data[0].email)
       }
     })
   }
