@@ -22,8 +22,6 @@ function Register() {
     })
     if (passwordReg !== passwordConfReg) {
       alert("Passwords don't match!")
-    } else {
-      window.location = "/login"
     }
   }
 
@@ -43,7 +41,7 @@ function Register() {
         <Form.Group className="mt-3 mb-3">
           <Form.Control placeholder="Confirm Password" type="password" onChange={(e) => { (setPasswordConfReg(e.target.value)) }} />
         </Form.Group>
-        <Button className="mr-3" onClick={register}>Register</Button>
+        <Link to={"/login"}><Button className="mr-3" onClick={register}>Register</Button></Link>
         <Link to={"/login"}><Button className="mr-3" variant="secondary">Return to Login</Button></Link>
       </Form>
     </Container>
