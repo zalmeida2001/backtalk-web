@@ -30,19 +30,39 @@ function Register() {
     <Container>
       <Form>
         <Form.Group className="mt-3">
-          <Form.Control placeholder="Username" type="text" onChange={(e) => { (setUsernameReg(e.target.value)) }} />
+          <Form.Control
+            placeholder="Username"
+            type="text"
+            onChange={(e) => { (setUsernameReg(e.target.value)) }}
+          />
         </Form.Group>
         <Form.Group className="mt-3 mb-3">
-          <Form.Control placeholder="Email" type="email" onChange={(e) => { (setEmailReg(e.target.value)) }} />
+          <Form.Control
+            placeholder="Email"
+            type="email"
+            onChange={(e) => { (setEmailReg(e.target.value)) }}
+          />
         </Form.Group>
         <Form.Group className="mt-3 mb-3">
-          <Form.Control placeholder="Password" type="password" onChange={(e) => { (setPasswordReg(e.target.value)) }} />
+          <Form.Control
+            placeholder="Password"
+            type="password"
+            onChange={(e) => { (setPasswordReg(e.target.value)) }}
+          />
         </Form.Group>
         <Form.Group className="mt-3 mb-3">
-          <Form.Control placeholder="Confirm Password" type="password" onChange={(e) => { (setPasswordConfReg(e.target.value)) }} />
+          <Form.Control
+            placeholder="Confirm Password"
+            type="password"
+            onChange={(e) => { (setPasswordConfReg(e.target.value)) }}
+          />
         </Form.Group>
-        <Link to={"/login"}><Button className="mr-3" onClick={register}>Register</Button></Link>
-        <Link to={"/login"}><Button className="mr-3" variant="secondary">Return to Login</Button></Link>
+        <Link to={"/login"}>
+          <Button className="mr-3" onClick={register}>Register</Button>
+        </Link>
+        <Link to={"/login"}>
+          <Button className="mr-3" variant="secondary">Return to Login</Button>
+        </Link>
       </Form>
     </Container>
 
