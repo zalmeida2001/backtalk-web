@@ -1,9 +1,9 @@
 import React from "react"
-
 import "../styles/Chat.css"
 import UseChat from "../components/UseChat"
 
 const ChatRoom = (props) => {
+
   const { roomId } = props.match.params
   const { messages, sendMessage } = UseChat(roomId)
   const [newMessage, setNewMessage] = React.useState("")

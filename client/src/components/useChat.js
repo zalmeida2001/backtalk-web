@@ -5,6 +5,7 @@ const NEW_CHAT_MESSAGE_EVENT = "newChatMessage"
 const SOCKET_SERVER_URL = "http://localhost:3001"
 
 const UseChat = (roomId) => {
+
   const [messages, setMessages] = useState([])
   const socketRef = useRef()
 
