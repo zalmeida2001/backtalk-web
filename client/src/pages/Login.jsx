@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import Axios from 'axios'
 import { Link } from 'react-router-dom'
-import { Container, Button, Form, Badge } from 'react-bootstrap'
+import { Container, Button, Form } from 'react-bootstrap'
 
 function Login() {
 
   const [emailLog, setEmailLog] = useState('')
   const [passwordLog, setPasswordLog] = useState('')
   const [loginStatus, setLoginStatus] = useState('')
+  document.title = loginStatus
 
   Axios.defaults.withCredentials = true
 
@@ -58,7 +59,6 @@ function Login() {
           <Button className="mr-3" variant="secondary">Register</Button>
         </Link>
         <Button className="mr-3" onClick={logout} variant="danger">Log Out</Button>
-        <Badge>{loginStatus}</Badge>
       </Form>
     </Container>
   )
