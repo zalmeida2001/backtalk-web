@@ -9,6 +9,7 @@ function Register() {
   const [usernameReg, setUsernameReg] = useState('')
   const [passwordReg, setPasswordReg] = useState('')
   const [passwordConfReg, setPasswordConfReg] = useState('')
+  document.title = "Register"
 
   const register = () => {
     if (passwordReg !== passwordConfReg) {

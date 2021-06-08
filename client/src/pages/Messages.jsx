@@ -2,6 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const Home = () => {
+
+  document.title = "Messages"
+
   const [roomName, setRoomName] = React.useState("");
 
   const handleRoomNameChange = (event) => {

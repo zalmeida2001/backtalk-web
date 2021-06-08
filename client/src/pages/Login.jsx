@@ -7,7 +7,7 @@ function Login() {
 
   const [emailLog, setEmailLog] = useState('')
   const [passwordLog, setPasswordLog] = useState('')
-  const [loginStatus, setLoginStatus] = useState('')
+  const [loginStatus, setLoginStatus] = useState("Login")
   document.title = loginStatus
 
   Axios.defaults.withCredentials = true

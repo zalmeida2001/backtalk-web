@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 
 function Home() {
 
+  document.title = "Home"
+
   return (
     <div>
       <nav>

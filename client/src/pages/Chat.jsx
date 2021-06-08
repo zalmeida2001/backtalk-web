@@ -7,6 +7,7 @@ const ChatRoom = (props) => {
   const { roomId } = props.match.params;
   const { messages, sendMessage } = useChat(roomId);
   const [newMessage, setNewMessage] = React.useState("");
+  document.title = "Room " + roomId
 
   const handleNewMessageChange = (event) => {
     setNewMessage(event.target.value);
