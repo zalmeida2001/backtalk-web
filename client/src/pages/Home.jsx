@@ -18,6 +18,9 @@ const Home = () => {
           <li>
             <Link to="/messages">Messages</Link>
           </li>
+          <li>
+            <Link to="/profile">Profile</Link>
+          </li>
         </ul>
       </nav>
     </div>

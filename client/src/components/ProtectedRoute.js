@@ -1,14 +1,17 @@
 import React from "react"
 import { Route, Redirect } from 'react-router-dom'
 
-const ProtectedRoute = ({ isAuth, component: Component, ...rest }) => {
+const ProtectedRoute = ({ component: Component, ...rest }) => {
 
   return (
     <Route {...rest} render={(props) => {
-      if (isAuth) {
+      if (true) { // When true, Auth = Successful / When false, Auth = Failed
         return <Component />
       } else {
-        <Redirect to={{ pathname: '/login', state: { from: props.location } }} />
+        return <Redirect to={{
+          pathname: '/login',
+          state: { from: props.location }
+        }} />
       }
     }} />
   )
