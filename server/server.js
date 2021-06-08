@@ -60,7 +60,8 @@ app.post('/register', (req, res) => {
   if (password == passwordConf) {
     bcrypt.hash(password, saltRounds, (err, hash) => {
       db.query("INSERT INTO users (uniqueuid, email, username, password) VALUES (?, ?, ?, ?);", [suid, email, username, hash], (err, result) => {
-        console.log(err)
+        if (err == null)
+          console.log("Inserted into the database!")
       })
     })
   }

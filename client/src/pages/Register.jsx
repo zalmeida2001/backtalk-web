@@ -3,7 +3,6 @@ import Axios from 'axios'
 import { Link } from 'react-router-dom'
 import { Container, Button, Form } from 'react-bootstrap'
 
-
 function Register() {
 
   const [emailReg, setEmailReg] = useState('')
@@ -12,16 +11,15 @@ function Register() {
   const [passwordConfReg, setPasswordConfReg] = useState('')
 
   const register = () => {
-    Axios.post('http://localhost:3001/register', {
-      email: emailReg,
-      username: usernameReg,
-      password: passwordReg,
-      passwordConf: passwordConfReg
-    }).then((response) => {
-      console.log(response)
-    })
     if (passwordReg !== passwordConfReg) {
       alert("Passwords don't match!")
+    } else {
+      Axios.post('http://localhost:3001/register', {
+        email: emailReg,
+        username: usernameReg,
+        password: passwordReg,
+        passwordConf: passwordConfReg
+      })
     }
   }
 
@@ -32,6 +30,7 @@ function Register() {
         <Form.Group className="mt-3">
           <Form.Control
             placeholder="Username"
+            name="txtUsername"
             type="text"
             onChange={(e) => { (setUsernameReg(e.target.value)) }}
           />
@@ -39,6 +38,7 @@ function Register() {
         <Form.Group className="mt-3 mb-3">
           <Form.Control
             placeholder="Email"
+            name="txtEmail"
             type="email"
             onChange={(e) => { (setEmailReg(e.target.value)) }}
           />
@@ -46,6 +46,7 @@ function Register() {
         <Form.Group className="mt-3 mb-3">
           <Form.Control
             placeholder="Password"
+            name="txtPassword"
             type="password"
             onChange={(e) => { (setPasswordReg(e.target.value)) }}
           />
@@ -53,13 +54,12 @@ function Register() {
         <Form.Group className="mt-3 mb-3">
           <Form.Control
             placeholder="Confirm Password"
+            name="txtPasswordConf"
             type="password"
             onChange={(e) => { (setPasswordConfReg(e.target.value)) }}
           />
         </Form.Group>
-        <Link to={"/login"}>
-          <Button className="mr-3" onClick={register}>Register</Button>
-        </Link>
+        <Button type="submit" className="mr-3" onClick={register}>Register</Button>
         <Link to={"/login"}>
           <Button className="mr-3" variant="secondary">Return to Login</Button>
         </Link>
