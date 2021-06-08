@@ -25,11 +25,6 @@ const Login = () => {
     })
   }
 
-  const logout = () => {
-    localStorage.clear('loggedIn')
-    window.location.href = '/login'
-  }
-
   useEffect(() => {
     Axios.get("http://localhost:3001/login").then((response) => {
       if (response.data.loggedIn === true)
@@ -58,7 +53,6 @@ const Login = () => {
         <Link to={"/register"}>
           <Button className="mr-3" variant="secondary">Register</Button>
         </Link>
-        <Button className="mr-3" onClick={logout} variant="danger">Log Out</Button>
       </Form>
     </Container>
   )
