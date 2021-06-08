@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 
-function NotFound() {
+const NotFound = () => {
 
   document.title = "Not Found"
 

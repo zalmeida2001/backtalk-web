@@ -3,7 +3,7 @@ import Axios from 'axios'
 import { Link } from 'react-router-dom'
 import { Container, Button, Form } from 'react-bootstrap'
 
-function Register() {
+const Register = () => {
 
   const [emailReg, setEmailReg] = useState('')
   const [usernameReg, setUsernameReg] = useState('')

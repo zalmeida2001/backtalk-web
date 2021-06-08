@@ -1,15 +1,15 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from "react"
+import { Link } from "react-router-dom"
 
-const Home = () => {
+const Messages = () => {
 
   document.title = "Messages"
 
   const [roomName, setRoomName] = React.useState("");
 
   const handleRoomNameChange = (event) => {
-    setRoomName(event.target.value);
-  };
+    setRoomName(event.target.value)
+  }
 
   return (
     <div className="home-container">
@@ -24,7 +24,7 @@ const Home = () => {
         Join room
       </Link>
     </div>
-  );
-};
+  )
+}
 
-export default Home;
+export default Messages

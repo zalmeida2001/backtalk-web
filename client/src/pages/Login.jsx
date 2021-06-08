@@ -3,7 +3,7 @@ import Axios from 'axios'
 import { Link } from 'react-router-dom'
 import { Container, Button, Form } from 'react-bootstrap'
 
-function Login() {
+const Login = () => {
 
   const [emailLog, setEmailLog] = useState('')
   const [passwordLog, setPasswordLog] = useState('')

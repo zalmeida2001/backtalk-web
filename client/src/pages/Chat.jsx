@@ -1,22 +1,22 @@
-import React from "react";
+import React from "react"
 
-import "../styles/Chat.css";
-import useChat from "../components/useChat";
+import "../styles/Chat.css"
+import UseChat from "../components/UseChat"
 
 const ChatRoom = (props) => {
-  const { roomId } = props.match.params;
-  const { messages, sendMessage } = useChat(roomId);
-  const [newMessage, setNewMessage] = React.useState("");
+  const { roomId } = props.match.params
+  const { messages, sendMessage } = UseChat(roomId)
+  const [newMessage, setNewMessage] = React.useState("")
   document.title = "Room " + roomId
 
   const handleNewMessageChange = (event) => {
-    setNewMessage(event.target.value);
-  };
+    setNewMessage(event.target.value)
+  }
 
   const handleSendMessage = () => {
-    sendMessage(newMessage);
-    setNewMessage("");
-  };
+    sendMessage(newMessage)
+    setNewMessage("")
+  }
 
   return (
     <div className="chat-room-container">
@@ -43,7 +43,7 @@ const ChatRoom = (props) => {
         Send
       </button>
     </div>
-  );
-};
+  )
+}
 
-export default ChatRoom;
+export default ChatRoom
