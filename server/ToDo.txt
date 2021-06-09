@@ -1,7 +1,6 @@
 Priority 1:
-JWT Auth
+Finish Protected Routes
 Integrate user accounts with chat
-Logout/destroy cookie
 
 Priority 2:
 Prevent duplicate entries for login and register

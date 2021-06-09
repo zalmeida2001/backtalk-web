@@ -5,7 +5,7 @@ import { Container, Button, Form } from 'react-bootstrap'
 
 const Login = () => {
 
-  const [emailLog, setEmailLog] = useState('')
+  const [userLog, setUserLog] = useState('')
   const [passwordLog, setPasswordLog] = useState('')
   const [loginStatus, setLoginStatus] = useState("Login")
   document.title = loginStatus
@@ -14,21 +14,22 @@ const Login = () => {
 
   const login = () => {
     Axios.post('http://localhost:3001/login', {
-      email: emailLog,
+      username: userLog,
       password: passwordLog,
     }).then((response) => {
       if (response.data.message) {
         setLoginStatus(response.data.message)
       } else {
-        setLoginStatus(response.data[0].email)
+        setLoginStatus(response.data[0].username)
       }
     })
+    //<Redirect to={profile}/>
   }
 
   useEffect(() => {
-    Axios.get("http://localhost:3001/login").then((response) => {
+    Axios.get("http://localhost:3001/auth").then((response) => {
       if (response.data.loggedIn === true)
-        setLoginStatus(response.data.user[0].email)
+        setLoginStatus(response.data.user[0].username)
     })
   })
 
@@ -37,9 +38,9 @@ const Login = () => {
       <Form>
         <Form.Group className="mt-3">
           <Form.Control
-            placeholder="Email"
-            type="email"
-            onChange={(e) => { (setEmailLog(e.target.value)) }}
+            placeholder="Username"
+            type="text"
+            onChange={(e) => { (setUserLog(e.target.value)) }}
           />
         </Form.Group>
         <Form.Group className="mt-3 mb-3">

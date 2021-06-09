@@ -9,7 +9,7 @@ const cookieParser = require('cookie-parser')
 const session = require('express-session')
 const customId = require('custom-id')
 const bcrypt = require('bcrypt')
-const PORT = 3001;
+const PORT = 3001
 
 app.use(express.json())
 app.use(cors({
@@ -25,6 +25,7 @@ app.use(session({
   resave: false,
   saveUninitialized: false,
   cookie: {
+    httpOnly: false,
     sameSite: true,
     expires: 60 * 60 * 24 * 1000
   }
@@ -40,7 +41,7 @@ db.connect((err) => {
   console.log("MySql Connected.")
 })
 
-app.get("/login", (req, res) => {
+app.get('/auth', (req, res) => {
   if (req.session.user) {
     res.send({ loggedIn: true, user: req.session.user })
   } else {
@@ -50,10 +51,10 @@ app.get("/login", (req, res) => {
 
 app.post('/register', (req, res) => {
   const suid = customId({})
-  const { email, username, password, passwordConf } = req.body
+  const { username, password, passwordConf } = req.body
   if (password == passwordConf) {
     bcrypt.hash(password, 10, (err, hash) => {
-      db.query("INSERT INTO users (uniqueuid, email, username, password) VALUES (?, ?, ?, ?);", [suid, email, username, hash], (err, result) => {
+      db.query("INSERT INTO users (uniqueuid, username, password) VALUES (?, ?, ?);", [suid, username, hash], (err, result) => {
         if (err == null)
           console.log("Inserted into the database!")
       })
@@ -62,9 +63,8 @@ app.post('/register', (req, res) => {
 })
 
 app.post('/login', (req, res) => {
-  const email = req.body.email
-  const password = req.body.password
-  db.query("SELECT * FROM users WHERE email = ?;", email, (err, result) => {
+  const { username, password } = req.body
+  db.query("SELECT * FROM users WHERE username = ?;", username, (err, result) => {
     if (err) res.send({ err: err })
     if (result.length > 0) {
       bcrypt.compare(password, result[0].password, (error, response) => {
@@ -73,14 +73,13 @@ app.post('/login', (req, res) => {
           console.log(req.session.user)
           res.send(result)
         } else {
-          res.send({ message: "Wrong email/password combination!" })
+          res.send({ message: "Wrong username/password combination!" })
         }
       })
     } else {
       res.send({ message: "User doesn't exist." })
     }
-  }
-  )
+  })
 })
 
 const server = app.listen(PORT, () => {

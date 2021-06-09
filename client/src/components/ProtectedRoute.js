@@ -5,7 +5,7 @@ const ProtectedRoute = ({ component: Component, ...rest }) => {
 
   return (
     <Route {...rest} render={(props) => {
-      if (true) { // When true, Auth = Successful / When false, Auth = Failed
+      if (false) { // When true, Auth = Successful / When false, Auth = Failed
         return <Component />
       } else {
         return <Redirect to={{
