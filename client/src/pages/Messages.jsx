@@ -19,6 +19,7 @@ const Messages = () => {
 
   const logout = () => {
     document.cookie = "userId=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
+    window.location = '/login'
   }
 
   const [roomName, setRoomName] = React.useState("");
@@ -40,6 +41,9 @@ const Messages = () => {
         Join room
       </Link>
       <Container>
+        <Link to={"/login"}>
+          <Button className="mr-3">Return to Login</Button>
+        </Link>
         <Button className="mr-3" variant="danger" onClick={logout}>Logout</Button>
       </Container>
     </div>

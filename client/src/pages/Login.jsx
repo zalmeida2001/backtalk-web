@@ -3,7 +3,7 @@ import Axios from 'axios'
 import { Link } from 'react-router-dom'
 import { Container, Button, Form } from 'react-bootstrap'
 
-const Login = () => {
+const Login = (setIsAuth) => {
 
   const [userLog, setUserLog] = useState('')
   const [passwordLog, setPasswordLog] = useState('')
@@ -23,13 +23,13 @@ const Login = () => {
         setLoginStatus(response.data[0].username)
       }
     })
-    //<Redirect to={profile}/>
   }
 
   useEffect(() => {
     Axios.get("http://localhost:3001/auth").then((response) => {
-      if (response.data.loggedIn === true)
+      if (response.data.loggedIn === true) {
         setLoginStatus(response.data.user[0].username)
+      }
     })
   })
 
@@ -53,6 +53,9 @@ const Login = () => {
         <Button className="mr-3" onClick={login}>Login</Button>
         <Link to={"/register"}>
           <Button className="mr-3" variant="secondary">Register</Button>
+        </Link>
+        <Link to={"/messages"}>
+          <Button className="mr-3" variant="danger">Messages</Button>
         </Link>
       </Form>
     </Container>
