@@ -1,15 +1,13 @@
 Priority 1:
-Finish Protected Routes
 Integrate user accounts with chat
+Create GUI
 
 Priority 2:
 Prevent duplicate entries for login and register
-Change login forms so that it only accepts emails
-Make it work on mobile
-Fix asking for email but inserting anyway
 
 Priority 3:
 Make inputs required for login/register
 Redirect after login/register
 Detect and prevent duplicate database entries, providing the proper warnings
-Groups
+
+Auth route for Login and Register

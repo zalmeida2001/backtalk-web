@@ -9,7 +9,6 @@ const Messages = () => {
   document.title = User
 
   Axios.defaults.withCredentials = true
-
   useEffect(() => {
     Axios.get("http://localhost:3001/auth").then((response) => {
       if (response.data.loggedIn === true)

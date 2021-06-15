@@ -1,4 +1,5 @@
 import React from "react"
+import { withRouter } from "react-router"
 import "../styles/Chat.css"
 import UseChat from "../components/UseChat"
 
@@ -46,4 +47,4 @@ const ChatRoom = (props) => {
   )
 }
 
-export default ChatRoom
+export default withRouter(ChatRoom)
