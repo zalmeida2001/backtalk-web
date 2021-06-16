@@ -11,7 +11,7 @@ const AuthRoute = ({ component: Component, ...rest }) => {
       if (!cookies.get('userId')) { // When true, Auth = Successful / When false, Auth = Failed
         return <Component />
       } else {
-        <Redirect to={{
+        return <Redirect to={{
           pathname: '/messages',
           state: { from: props.location }
         }} />

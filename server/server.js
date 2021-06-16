@@ -3,11 +3,9 @@ const app = express()
 const socket = require('socket.io')
 const mysql = require('mysql')
 const cors = require('cors')
-const jwt = require('jsonwebtoken')
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const session = require('express-session')
-const customId = require('custom-id')
 const bcrypt = require('bcrypt')
 const PORT = 3001
 
@@ -50,11 +48,10 @@ app.get('/auth', (req, res) => {
 })
 
 app.post('/register', (req, res) => {
-  const suid = customId({})
   const { username, password, passwordConf } = req.body
   if (password == passwordConf) {
     bcrypt.hash(password, 10, (err, hash) => {
-      db.query("INSERT INTO users (uniqueuid, username, password) VALUES (?, ?, ?);", [suid, username, hash], (err, result) => {
+      db.query("INSERT INTO users (username, password) VALUES (?, ?);", [username, hash], (err, result) => {
         if (err == null)
           console.log("Inserted into the database!")
       })

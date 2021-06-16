@@ -30,7 +30,7 @@ const Login = () => {
   useEffect(() => {
     Axios.get("http://localhost:3001/auth").then((response) => {
       if (response.data.loggedIn === true) {
-        setLoginStatus(response.data.user[0].username)
+        window.location = '/messages'
       }
     })
   })

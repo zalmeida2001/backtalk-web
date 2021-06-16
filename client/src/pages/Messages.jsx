@@ -40,9 +40,6 @@ const Messages = () => {
         Join room
       </Link>
       <Container>
-        <Link to={"/login"}>
-          <Button className="mr-3">Return to Login</Button>
-        </Link>
         <Button className="mr-3" variant="danger" onClick={logout}>Logout</Button>
       </Container>
     </div>

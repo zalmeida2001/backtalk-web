@@ -13,10 +13,10 @@ const Routes = () => {
 
   return <BrowserRouter>
     <Switch>
-      <ProtectedRoute exact path="/messages/:roomId" component={Chat} />
-      <ProtectedRoute path="/messages" component={Messages} />
-      <AuthRoute exact path="/login" component={Login} />
-      <AuthRoute exact path="/register" component={Register} />
+      <AuthRoute exact path="/messages/:roomId" component={Chat} />
+      <AuthRoute path="/messages" component={Messages} />
+      <ProtectedRoute exact path="/login" component={Login} />
+      <ProtectedRoute exact path="/register" component={Register} />
       <Route exact path="/404" component={NotFound} />
       <Redirect exact from="/" to="/login" />
       <Redirect to="/404" />

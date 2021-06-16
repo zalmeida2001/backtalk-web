@@ -1,13 +1,11 @@
 Priority 1:
 Integrate user accounts with chat
 Create GUI
+Redirect after login/register
 
 Priority 2:
-Prevent duplicate entries for login and register
+Detect and prevent duplicate database entries, providing the proper warnings
+Store messages in local storage
 
 Priority 3:
 Make inputs required for login/register
-Redirect after login/register
-Detect and prevent duplicate database entries, providing the proper warnings
-
-Auth route for Login and Register
