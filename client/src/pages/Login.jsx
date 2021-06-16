@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { withRouter } from 'react-router'
 import Axios from 'axios'
-import { Button, Form } from 'react-bootstrap'
+import { Button, Alert, Form } from 'react-bootstrap'
 import "../styles/Styles.css"
 
 
@@ -10,23 +10,10 @@ const Login = () => {
   const [userLog, setUserLog] = useState('')
   const [passwordLog, setPasswordLog] = useState('')
   const [loginStatus, setLoginStatus] = useState("Login")
+  const [failed, setFailed] = useState('')
   document.title = loginStatus
 
   Axios.defaults.withCredentials = true
-
-  const login = () => {
-    Axios.post('http://localhost:3001/login', {
-      username: userLog,
-      password: passwordLog,
-    }).then((response) => {
-      if (response.data.message) {
-        setLoginStatus(response.data.message)
-      } else {
-        setLoginStatus(response.data[0].username)
-      }
-    })
-  }
-
   useEffect(() => {
     Axios.get("http://localhost:3001/auth").then((response) => {
       if (response.data.loggedIn === true) {
@@ -34,6 +21,23 @@ const Login = () => {
       }
     })
   })
+
+  const login = () => {
+    Axios.post('http://localhost:3001/login', {
+      username: userLog,
+      password: passwordLog,
+    }).then((response) => {
+      if (response.data.failed) {
+        setLoginStatus(response.data.failed)
+        /*<Alert variant= {danger}>
+          Hello
+        </Alert>
+      */
+      } else {
+        setLoginStatus(response.data[0].username)
+      }
+    })
+  }
 
   return (
     <html>
@@ -85,6 +89,9 @@ const Login = () => {
                         <div class="small"><a href="/register">Não tem conta? Crie uma aqui!</a></div>
                       </div>
                     </div>
+                    <Alert variant="danger" className="mt-3">
+                      This is a danger alert — check it out!
+                    </Alert>
                   </div>
                 </div>
               </div>
@@ -104,35 +111,6 @@ const Login = () => {
         <script src="js/scripts.js"></script>
       </body>
     </html >
-    /*
-     <Container>
-       <Container>
-         <Form>
-           <Form.Group className="mt-3">
-             <Form.Control
-               placeholder="Username"
-               type="text"
-               onChange={(e) => { (setUserLog(e.target.value)) }}
-             />
-           </Form.Group>
-           <Form.Group className="mt-3 mb-3">
-             <Form.Control
-               placeholder="Password"
-               type="password"
-               onChange={(e) => { (setPasswordLog(e.target.value)) }}
-             />
-           </Form.Group>
-           <Button className="mr-3" onClick={login}>Login</Button>
-           <Link to={"/register"}>
-             <Button className="mr-3" variant="secondary">Register</Button>
-           </Link>
-           <Link to={"/messages"}>
-             <Button className="mr-3" variant="danger">Messages</Button>
-           </Link>
-         </Form>
-       </Container>
-     </Container>
-     */
   )
 
 }

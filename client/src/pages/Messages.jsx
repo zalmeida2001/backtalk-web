@@ -5,7 +5,7 @@ import { Container, Button } from 'react-bootstrap'
 
 const Messages = () => {
 
-  const [User, setUser] = useState("Not logged in")
+  const [User, setUser] = useState("")
   document.title = User
 
   Axios.defaults.withCredentials = true

@@ -1,21 +1,32 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { withRouter } from "react-router"
-import "../styles/Chat.css"
+import Axios from 'axios'
 import UseChat from "../components/UseChat"
+import "../styles/Chat.css"
 
 const ChatRoom = (props) => {
 
   const { roomId } = props.match.params
   const { messages, sendMessage } = UseChat(roomId)
   const [newMessage, setNewMessage] = React.useState("")
-  document.title = "Room " + roomId
+  const [User, setUser] = useState("")
+  document.title = User
+
+  Axios.defaults.withCredentials = true
+  useEffect(() => {
+    Axios.get("http://localhost:3001/auth").then((response) => {
+      if (response.data.loggedIn === true) {
+        setUser(response.data.user[0].username)
+      }
+    })
+  })
 
   const handleNewMessageChange = (event) => {
     setNewMessage(event.target.value)
   }
 
   const handleSendMessage = () => {
-    sendMessage(newMessage)
+    sendMessage(User + ": " + newMessage)
     setNewMessage("")
   }
 

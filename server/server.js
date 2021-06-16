@@ -70,11 +70,11 @@ app.post('/login', (req, res) => {
           console.log(req.session.user)
           res.send(result)
         } else {
-          res.send({ message: "Wrong username/password combination!" })
+          res.send({ failed: "Wrong username/password combination!" })
         }
       })
     } else {
-      res.send({ message: "User doesn't exist." })
+      res.send({ failed: "User doesn't exist." })
     }
   })
 })
@@ -84,10 +84,6 @@ const server = app.listen(PORT, () => {
 })
 
 //----------------------------------------------------------
-
-app.get('/messages', (req, res) => {
-  res.render('Messages')
-})
 
 const io = socket(server, {
   cors: {
