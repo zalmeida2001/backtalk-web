@@ -47,22 +47,31 @@ app.get('/auth', (req, res) => {
   }
 })
 
+app.post('/dupe', (req, res) => {
+  const { username } = req.body
+  db.query("SELECT * FROM users WHERE username = ?;", username, (err, result) => {
+    if (result.length > 0)
+      res.send({ exists: true })
+    else
+      res.send({ exists: false })
+  })
+})
+
 app.post('/register', (req, res) => {
-  const { username, password, passwordConf } = req.body
-  if (password == passwordConf) {
-    bcrypt.hash(password, 10, (err, hash) => {
-      db.query("INSERT INTO users (username, password) VALUES (?, ?);", [username, hash], (err, result) => {
-        if (err == null)
-          console.log("Inserted into the database!")
-      })
+  const { username, password } = req.body
+  bcrypt.hash(password, 10, (err, hash) => {
+    db.query("INSERT INTO users (username, password) VALUES (?, ?);", [username, hash], (err, result) => {
+      if (err == null) {
+        res.send({ message: "Registered" })
+        console.log("Inserted into the database!")
+      }
     })
-  }
+  })
 })
 
 app.post('/login', (req, res) => {
   const { username, password } = req.body
   db.query("SELECT * FROM users WHERE username = ?;", username, (err, result) => {
-    if (err) res.send({ err: err })
     if (result.length > 0) {
       bcrypt.compare(password, result[0].password, (error, response) => {
         if (response) {
@@ -70,11 +79,11 @@ app.post('/login', (req, res) => {
           console.log(req.session.user)
           res.send(result)
         } else {
-          res.send({ failed: "Wrong username/password combination!" })
+          res.send({ failed: "Nome de utilizador ou password incorretos." })
         }
       })
     } else {
-      res.send({ failed: "User doesn't exist." })
+      res.send({ failed: "Utilizador não existe." })
     }
   })
 })

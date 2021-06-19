@@ -9,8 +9,9 @@ const Login = () => {
 
   const [userLog, setUserLog] = useState('')
   const [passwordLog, setPasswordLog] = useState('')
+  const [alertVariant, setAlertVariant] = useState('')
+  const [blankField, setBlankField] = useState('')
   const [loginStatus, setLoginStatus] = useState("Login")
-  const [failed, setFailed] = useState('')
   document.title = loginStatus
 
   Axios.defaults.withCredentials = true
@@ -28,69 +29,69 @@ const Login = () => {
       password: passwordLog,
     }).then((response) => {
       if (response.data.failed) {
-        setLoginStatus(response.data.failed)
-        /*<Alert variant= {danger}>
-          Hello
-        </Alert>
-      */
-      } else {
-        setLoginStatus(response.data[0].username)
+        setAlertVariant("danger")
+        setBlankField(response.data.failed)
       }
+      setLoginStatus('')
     })
+  }
+
+  const selectClick = (e) => {
+    e.target.select()
   }
 
   return (
     <html>
       <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta charSet="utf-8" />
+        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Login - SB Admin</title>
-        <link href="css/styles.css" rel="stylesheet" />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossOrigin="anonymous"></script>
       </head>
-      <body class="bg-light">
+      <body className="bg-light">
         <div id="layoutAuthentication">
           <div id="layoutAuthentication_content">
             <main>
-              <div class="container">
-                <div class="row justify-content-center">
-                  <div class="col-lg-5">
-                    <div class="card shadow-lg border-0 rounded-lg mt-5">
-                      <div class="card-header"><h3 class="text-center font-weight-light my-4">Login</h3></div>
-                      <div class="card-body">
+              <div className="container">
+                <div className="row justify-content-center">
+                  <div className="col-lg-5">
+                    <div className="card shadow-lg border-0 rounded-lg mt-5">
+                      <div className="card-header"><h3 className="text-center font-weight-light my-4">Login</h3></div>
+                      <div className="card-body">
                         <form>
-                          <div class="form-floating mb-3">
+                          <div className="form-floating mb-3">
                             <Form.Group className="mt-3">
-                              <Form.Control class="form-control"
+                              <Form.Control className="form-control"
                                 placeholder="Nome de Utilizador"
                                 type="text"
+                                onClick={selectClick}
                                 onChange={(e) => { (setUserLog(e.target.value)) }}
                               />
                             </Form.Group>
                           </div>
-                          <div class="form-floating mb-3">
+                          <div className="form-floating mb-3">
                             <Form.Group className="mt-3 mb-3">
-                              <Form.Control class="form-control"
+                              <Form.Control className="form-control"
                                 placeholder="Password"
                                 type="password"
+                                onClick={selectClick}
                                 onChange={(e) => { (setPasswordLog(e.target.value)) }}
                               />
                             </Form.Group>
                           </div>
-                          <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
+                          <div className="d-flex align-items-center justify-content-between mt-4 mb-0">
                             <Button variant="primary" className="mr-3" onClick={login}>Login</Button>
                           </div>
                         </form>
                       </div>
-                      <div class="card-footer text-center py-3">
-                        <div class="small"><a href="/register">Não tem conta? Crie uma aqui!</a></div>
+                      <div className="card-footer text-center py-3">
+                        <div className="small"><a href="/register">Não tem conta? Crie uma aqui!</a></div>
                       </div>
                     </div>
-                    <Alert variant="danger" className="mt-3">
-                      This is a danger alert — check it out!
+                    <Alert variant={alertVariant} className="mt-3">
+                      {blankField}
                     </Alert>
                   </div>
                 </div>
@@ -98,16 +99,16 @@ const Login = () => {
             </main>
           </div>
           <div id="layoutAuthentication_footer">
-            <footer class="py-4 bg-light mt-auto">
-              <div class="container-fluid px-4">
-                <div class="d-flex align-items-center justify-content-between small">
-                  <div class="text-muted">Copyright &copy; BackTalk 2021</div>
+            <footer className="py-4 bg-light mt-auto">
+              <div className="container-fluid px-4">
+                <div className="d-flex align-items-center justify-content-between small">
+                  <div className="text-muted">Copyright &copy; BackTalk 2021</div>
                 </div>
               </div>
             </footer>
           </div>
         </div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" crossOrigin="anonymous"></script>
         <script src="js/scripts.js"></script>
       </body>
     </html >
