@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { withRouter } from 'react-router'
 import Axios from 'axios'
 import { Button, Alert, Form } from 'react-bootstrap'
-import "../styles/Styles.css"
+import "../Styles.css"
 
 
 const Login = () => {
@@ -11,7 +11,7 @@ const Login = () => {
   const [passwordLog, setPasswordLog] = useState('')
   const [alertVariant, setAlertVariant] = useState('')
   const [blankField, setBlankField] = useState('')
-  const [loginStatus, setLoginStatus] = useState("BackTalk - Login")
+  const [loginStatus, setLoginStatus] = useState("Login | BackTalk")
   document.title = loginStatus
 
   Axios.defaults.withCredentials = true

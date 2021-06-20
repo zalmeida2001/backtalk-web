@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import Axios from 'axios'
 import { Link, withRouter } from 'react-router-dom'
-import { Container, Button } from 'react-bootstrap'
+import { Container, Button, Tab, Nav, Modal } from 'react-bootstrap'
+import '../Styles.css'
+import Chat from "./Chat"
 
 const Messages = () => {
 
-  const [User, setUser] = useState("BackTalk - Message")
+  const [User, setUser] = useState("Messages | BackTalk")
   document.title = User
 
   Axios.defaults.withCredentials = true
@@ -28,6 +30,8 @@ const Messages = () => {
   }
 
   return (
+    <Chat />
+    /*
     <div className="home-container">
       <input
         type="text"
@@ -43,6 +47,7 @@ const Messages = () => {
         <Button className="mr-3" variant="danger" onClick={logout}>Logout</Button>
       </Container>
     </div>
+    */
   )
 }
 

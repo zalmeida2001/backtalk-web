@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import { withRouter } from "react-router"
 import Axios from 'axios'
 import UseChat from "../components/UseChat"
-import "../styles/Chat.css"
+import "../Styles.css"
 
 const ChatRoom = (props) => {
 
