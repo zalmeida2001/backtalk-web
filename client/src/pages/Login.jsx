@@ -11,7 +11,7 @@ const Login = () => {
   const [passwordLog, setPasswordLog] = useState('')
   const [alertVariant, setAlertVariant] = useState('')
   const [blankField, setBlankField] = useState('')
-  const [loginStatus, setLoginStatus] = useState("Login")
+  const [loginStatus, setLoginStatus] = useState("BackTalk - Login")
   document.title = loginStatus
 
   Axios.defaults.withCredentials = true

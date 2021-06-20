@@ -8,8 +8,8 @@ const ChatRoom = (props) => {
 
   const { roomId } = props.match.params
   const { messages, sendMessage } = UseChat(roomId)
-  const [newMessage, setNewMessage] = React.useState("")
-  const [User, setUser] = useState("")
+  const [newMessage, setNewMessage] = useState('')
+  const [User, setUser] = useState('')
   document.title = User
 
   Axios.defaults.withCredentials = true

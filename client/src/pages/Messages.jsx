@@ -5,14 +5,14 @@ import { Container, Button } from 'react-bootstrap'
 
 const Messages = () => {
 
-  const [User, setUser] = useState("")
+  const [User, setUser] = useState("BackTalk - Message")
   document.title = User
 
   Axios.defaults.withCredentials = true
   useEffect(() => {
     Axios.get("http://localhost:3001/auth").then((response) => {
       if (response.data.loggedIn === true)
-        setUser(response.data.user[0].username)
+        setUser("BackTalk - " + response.data.user[0].username)
     })
   })
 
@@ -21,7 +21,7 @@ const Messages = () => {
     window.location = '/login'
   }
 
-  const [roomName, setRoomName] = React.useState("");
+  const [roomName, setRoomName] = useState("");
 
   const handleRoomNameChange = (event) => {
     setRoomName(event.target.value)
