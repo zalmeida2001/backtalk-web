@@ -44,7 +44,6 @@ const Register = () => {
             localStorage.setItem('registered', true)
             setRegStatus('')
           })
-
         }
       })
     }

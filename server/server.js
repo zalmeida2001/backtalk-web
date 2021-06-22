@@ -7,6 +7,7 @@ const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const session = require('express-session')
 const bcrypt = require('bcrypt')
+const { v4: uuidv4 } = require('uuid')
 const PORT = 3001
 
 app.use(express.json())
@@ -54,6 +55,17 @@ app.post('/dupe', (req, res) => {
       res.send({ exists: true })
     else
       res.send({ exists: false })
+  })
+})
+
+app.post('/addcontact', (req, res) => {
+  const { username, contact } = req.body
+  db.query("INSERT INTO contacts (username, contact, conversation) VALUES (?, ?, ?);", [username, contact, uuidv4()], (err, result) => {
+    if (err == null) {
+      console.log("Contact added!")
+    } else {
+      console.log("not added!")
+    }
   })
 })
 

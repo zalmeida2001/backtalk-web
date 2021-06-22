@@ -4,11 +4,17 @@ Create GUI
 
 Priority 2:
 Store messages in local storage
+Message dates
 
 Priority 3:
+Send files
 
 Known bugs:
 Friend list overflows
+Messages overflows
+Forgets username if page is closed
+
+Next up: Load contacts in Messages.jsx
 
 Old CSS: 
 
