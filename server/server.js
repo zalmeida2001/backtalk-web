@@ -58,6 +58,13 @@ app.post('/dupe', (req, res) => {
   })
 })
 
+app.post('/retrievecontacts', (req, res) => {
+  const { username } = req.body
+  db.query("SELECT contact, conversation FROM contacts WHERE username = ?;", username, (err, result) => {
+    res.send(result)
+  })
+})
+
 app.post('/addcontact', (req, res) => {
   const { username, contact } = req.body
   db.query("INSERT INTO contacts (username, contact, conversation) VALUES (?, ?, ?);", [username, contact, uuidv4()], (err, result) => {
@@ -115,7 +122,7 @@ const io = socket(server, {
 const NEW_CHAT_MESSAGE_EVENT = "newChatMessage";
 
 io.on("connection", (socket) => {
-  console.log(`Client ${socket.id} connected`)
+  //console.log(`Client ${socket.id} connected to room ${roomId}`)
 
   // Join a conversation
   const { roomId } = socket.handshake.query;

@@ -36,8 +36,10 @@ const Messages = (props) => {
   }
 
   const handleSendMessage = () => {
-    sendMessage(User + ": " + newMessage)
-    setNewMessage("")
+    if (newMessage !== '') {
+      sendMessage(newMessage)
+      setNewMessage("")
+    }
   }
 
   function closeModal() {
@@ -59,11 +61,20 @@ const Messages = (props) => {
         Axios.post('http://localhost:3001/addcontact', {
           username: User,
           contact: newContact,
-        }).then(() => {
-          //load contacts
+        }).then((response) => {
+          //retrieve contacts
         })
         setModalOpen(false)
       }
+    })
+  }
+
+  const test = () => {
+    Axios.post('http://localhost:3001/retrievecontacts', {
+      username: User,
+    }).then((response) => {
+      console.log(response.data[0].contact)
+      console.log(response.data[0].conversation)
     })
   }
 
@@ -90,6 +101,7 @@ const Messages = (props) => {
                 <button className="btn btn-danger rounded px-4 ml-5" type="button" onClick={logout}>
                   Logout
                 </button>
+                <Button variant="primary" onClick={test}>test</Button>
               </div>
             </div>
           </div>

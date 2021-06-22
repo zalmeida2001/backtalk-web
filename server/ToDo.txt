@@ -7,12 +7,14 @@ Store messages in local storage
 Message dates
 
 Priority 3:
+Translator API
 Send files
 
 Known bugs:
 Friend list overflows
 Messages overflows
-Forgets username if page is closed
+Sometimes forgets username if page is closed
+2 people can have 2 chats
 
 Next up: Load contacts in Messages.jsx
 
