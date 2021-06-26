@@ -122,7 +122,7 @@ const io = socket(server, {
 const NEW_CHAT_MESSAGE_EVENT = "newChatMessage";
 
 io.on("connection", (socket) => {
-  //console.log(`Client ${socket.id} connected to room ${roomId}`)
+  console.log(`Client ${socket.id} connected`)
 
   // Join a conversation
   const { roomId } = socket.handshake.query;

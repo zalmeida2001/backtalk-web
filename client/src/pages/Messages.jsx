@@ -24,8 +24,6 @@ const Messages = (props) => {
     Axios.get("http://localhost:3001/auth").then((response) => {
       if (response.data.loggedIn === true)
         setUser(response.data.user[0].username)
-      else
-        window.location = '/login'
     })
   }, [])
 
@@ -107,14 +105,12 @@ const Messages = (props) => {
                 )}
               </div>
               <div className="card-footer">
-                <div className="btn-group btn-group-md" role="group">
-                  <button className="btn btn-primary rounded" type="button" onClick={() => setModalOpen(true)}>
-                    Adicionar
-                  </button>
-                  <button className="btn btn-danger rounded" type="button" onClick={logout}>
-                    Logout
-                  </button>
-                </div>
+                <button className="btn btn-primary rounded" type="button" onClick={() => setModalOpen(true)}>
+                  Adicionar
+                </button>
+                <button className="btn btn-danger rounded float-right px-3" type="button" onClick={logout}>
+                  Logout
+                </button>
               </div>
             </div>
           </div>
