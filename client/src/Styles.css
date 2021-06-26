@@ -11242,3 +11242,13 @@ body {
   font-size: 0.75rem;
   border-radius: 0.25rem !important;
 }
+
+.messages-margin-top {
+  margin-top: 7%;
+}
+
+.unselectable {
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
+}
