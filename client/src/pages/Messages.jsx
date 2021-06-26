@@ -5,17 +5,19 @@ import { Modal, Button, Alert } from 'react-bootstrap'
 import UseChat from "../components/UseChat"
 import '../Styles.css'
 
-const Messages = (props) => {
+const Messages = () => {
 
-  const { roomId } = props.match.params
-  const { messages, sendMessage } = UseChat(roomId)
+  const [roomId, setRoomId] = useState('')
   const [newMessage, setNewMessage] = useState('')
   const [newContact, setNewContact] = useState('')
-  const [User, setUser] = useState('')
+  const [user, setUser] = useState('')
+  const [otherUser, setOtherUser] = useState('')
+  const [isDisabled, setIsDisabled] = useState(true)
   const [modalOpen, setModalOpen] = useState(false)
   const [alertVariant, setAlertVariant] = useState('')
   const [blankField, setBlankField] = useState('')
   const [contacts, setContacts] = useState([])
+  const { messages, sendMessage } = UseChat(roomId)
   document.title = "Messages | BackTalk"
 
   Axios.defaults.withCredentials = true
@@ -29,7 +31,7 @@ const Messages = (props) => {
 
   useEffect(() => {
     Axios.post('http://localhost:3001/retrievecontacts', {
-      username: User,
+      username: user,
     }).then((response) => {
       setContacts(response.data)
     })
@@ -74,7 +76,7 @@ const Messages = (props) => {
         setBlankField("Utilizador não existe.")
       } else {
         Axios.post('http://localhost:3001/addcontact', {
-          username: User,
+          username: user,
           contact: newContact,
         })
         setModalOpen(false)
@@ -82,8 +84,10 @@ const Messages = (props) => {
     })
   }
 
-  const clickContact = () => {
-
+  const onContactClick = (contact, conversation) => {
+    setOtherUser(contact)
+    setRoomId(conversation)
+    setIsDisabled(false)
   }
 
   return (
@@ -93,11 +97,11 @@ const Messages = (props) => {
           <div className="col-md-3 messages-margin-top">
             <div className="card bg-default h-100 d-flex flex-column shadow-lg">
               <h5 className="card-header">
-                {User}
+                {user}
               </h5>
               <div className="overflow-auto flex-grow-1">
                 {contacts.map(contact =>
-                  <div className="card-body border-bottom" style={{ cursor: 'pointer' }} key={contact.conversation} onClick={clickContact(contact.conversation)}>
+                  <div className="card-body border-bottom" style={{ cursor: 'pointer' }} key={contact.conversation} onClick={() => { onContactClick(contact.contact, contact.conversation) }}>
                     <p className="card-text unselectable">
                       {contact.contact}
                     </p>
@@ -117,7 +121,7 @@ const Messages = (props) => {
           <div className="col-md-9 messages-margin-top">
             <div className="h-100 mr-1 d-flex flex-column shadow-lg">
               <h5 className="card-header border">
-                otherUser
+                {otherUser}
               </h5>
               <div className="card-body h-100 d-flex flex-column align-items-start justify-content-end px-3 border-right border-left">
                 {messages.map((message, i) => {
@@ -130,7 +134,7 @@ const Messages = (props) => {
                         {message.body}
                       </div>
                       <div className={`text-muted small ${message.ownedByCurrentUser ? 'text-right' : ''}`}>
-                        {message.ownedByCurrentUser ? 'You' : 'otherUser'}
+                        {message.ownedByCurrentUser ? 'You' : { otherUser }}
                       </div>
                     </div>
                   )
@@ -138,12 +142,13 @@ const Messages = (props) => {
               </div>
               <div className="card-footer border input-group">
                 <input
+                  disabled={isDisabled}
                   className="rounded form-control mr-4"
                   value={newMessage}
                   onChange={handleNewMessageChange}
                   onKeyPress={handleKeyPress}
                   autoFocus={true}
-                  placeholder="Write message..."
+                  placeholder="Nova mensagem..."
                 />
                 <div className="input-group-append">
                   <button onClick={handleSendMessage} className="btn btn-primary rounded px-4">Enviar</button>
