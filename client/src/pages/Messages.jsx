@@ -35,7 +35,7 @@ const Messages = () => {
     }).then((response) => {
       setContacts(response.data)
     })
-  }, [[], [newContact]])
+  })
 
   const logout = () => {
     document.cookie = "userId=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
@@ -74,12 +74,21 @@ const Messages = () => {
       if (response.data.exists !== true) {
         setAlertVariant("danger")
         setBlankField("Utilizador não existe.")
+      } else if (user === newContact) {
+        setAlertVariant("danger")
+        setBlankField("Não pode adicionar o seu contacto.")
       } else {
-        Axios.post('http://localhost:3001/addcontact', {
+        Axios.post('http://localhost:3001/checkmirroredcontacts', {
           username: user,
           contact: newContact,
+        }).then((response) => {
+          Axios.post('http://localhost:3001/addcontact', {
+            username: user,
+            contact: newContact,
+            conversation: response.data
+          })
+          setModalOpen(false)
         })
-        setModalOpen(false)
       }
     })
   }

@@ -6,8 +6,8 @@ const cors = require('cors')
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const session = require('express-session')
-const bcrypt = require('bcrypt')
 const { v4: uuidv4 } = require('uuid')
+const bcrypt = require('bcrypt')
 const PORT = 3001
 
 app.use(express.json())
@@ -65,13 +65,26 @@ app.post('/retrievecontacts', (req, res) => {
   })
 })
 
-app.post('/addcontact', (req, res) => {
+app.post('/checkmirroredcontacts', (req, res) => {
   const { username, contact } = req.body
-  db.query("INSERT INTO contacts (username, contact, conversation) VALUES (?, ?, ?);", [username, contact, uuidv4()], (err, result) => {
+  db.query("SELECT conversation FROM contacts WHERE username = ? and contact = ?;", [contact, username], (err, result) => {
+    if (result.length > 0) {
+      res.send(result[0].conversation)
+      console.log("im here 1")
+    } else {
+      res.send(uuidv4())
+      console.log("im here 2")
+    }
+  })
+})
+
+app.post('/addcontact', (req, res) => {
+  const { username, contact, conversation } = req.body
+  db.query("INSERT INTO contacts (username, contact, conversation) VALUES (?, ?, ?);", [username, contact, conversation], (err, result) => {
     if (err == null) {
       console.log("Contact added!")
     } else {
-      console.log("not added!")
+      console.log("Contact not added!")
     }
   })
 })
