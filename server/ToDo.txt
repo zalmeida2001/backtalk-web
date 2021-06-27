@@ -8,4 +8,3 @@ Priority 3:
 Known bugs:
 Friend list overflows
 Messages overflows
-2 people can have 2 chats
