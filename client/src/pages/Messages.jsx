@@ -18,7 +18,7 @@ const Messages = () => {
   const [blankField, setBlankField] = useState('')
   const [contacts, setContacts] = useState([])
   const { messages, sendMessage } = UseChat(roomId)
-  document.title = "Messages | BackTalk"
+  document.title = "Mensagens | BackTalk"
 
   Axios.defaults.withCredentials = true
 
@@ -97,6 +97,9 @@ const Messages = () => {
     setOtherUser(contact)
     setRoomId(conversation)
     setIsDisabled(false)
+    if (contact !== otherUser)
+      while (document.getElementById("messages-clear") !== null)
+        document.getElementById("messages-clear").remove()
   }
 
   return (
@@ -136,6 +139,7 @@ const Messages = () => {
                 {messages.map((message, i) => {
                   return (
                     <div
+                      id="messages-clear"
                       key={i}
                       className={`my-1 d-flex flex-column ${message.ownedByCurrentUser ? 'align-self-end align-items-end' : 'align-items-start'}`}
                     >
@@ -143,7 +147,7 @@ const Messages = () => {
                         {message.body}
                       </div>
                       <div className={`text-muted small ${message.ownedByCurrentUser ? 'text-right' : ''}`}>
-                        {message.ownedByCurrentUser ? 'You' : { otherUser }}
+                        {message.ownedByCurrentUser ? 'Eu' : otherUser}
                       </div>
                     </div>
                   )

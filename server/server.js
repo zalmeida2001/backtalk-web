@@ -41,20 +41,13 @@ db.connect((err) => {
 })
 
 app.get('/auth', (req, res) => {
-  if (req.session.user) {
-    res.send({ loggedIn: true, user: req.session.user })
-  } else {
-    res.send({ loggedIn: false })
-  }
+  req.session.user ? res.send({ loggedIn: true, user: req.session.user }) : res.send({ loggedIn: false })
 })
 
 app.post('/dupe', (req, res) => {
   const { username } = req.body
   db.query("SELECT * FROM users WHERE username = ?;", username, (err, result) => {
-    if (result.length > 0)
-      res.send({ exists: true })
-    else
-      res.send({ exists: false })
+    result.length > 0 ? res.send({ exists: true }) : res.send({ exists: false })
   })
 })
 
@@ -68,25 +61,13 @@ app.post('/retrievecontacts', (req, res) => {
 app.post('/checkmirroredcontacts', (req, res) => {
   const { username, contact } = req.body
   db.query("SELECT conversation FROM contacts WHERE username = ? and contact = ?;", [contact, username], (err, result) => {
-    if (result.length > 0) {
-      res.send(result[0].conversation)
-      console.log("im here 1")
-    } else {
-      res.send(uuidv4())
-      console.log("im here 2")
-    }
+    result.length > 0 ? res.send(result[0].conversation) : res.send(uuidv4())
   })
 })
 
 app.post('/addcontact', (req, res) => {
   const { username, contact, conversation } = req.body
-  db.query("INSERT INTO contacts (username, contact, conversation) VALUES (?, ?, ?);", [username, contact, conversation], (err, result) => {
-    if (err == null) {
-      console.log("Contact added!")
-    } else {
-      console.log("Contact not added!")
-    }
-  })
+  db.query("INSERT INTO contacts (username, contact, conversation) VALUES (?, ?, ?);", [username, contact, conversation])
 })
 
 app.post('/register', (req, res) => {
@@ -135,11 +116,11 @@ const io = socket(server, {
 const NEW_CHAT_MESSAGE_EVENT = "newChatMessage"
 
 io.on("connection", (socket) => {
-  console.log(`Client ${socket.id} connected`)
 
   // Join a conversation
   const { roomId } = socket.handshake.query
   socket.join(roomId)
+  console.log(`Client ${socket.id} connected joined room ${roomId}`)
 
   // Listen for new messages
   socket.on(NEW_CHAT_MESSAGE_EVENT, (data) => {

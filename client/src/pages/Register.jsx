@@ -10,7 +10,7 @@ const Register = () => {
   const [passwordConfReg, setPasswordConfReg] = useState('')
   const [alertVariant, setAlertVariant] = useState('')
   const [blankField, setBlankField] = useState('')
-  const [regStatus, setRegStatus] = useState("Register | BackTalk")
+  const [regStatus, setRegStatus] = useState("Registar | BackTalk")
   document.title = regStatus
   Axios.defaults.withCredentials = true
 
