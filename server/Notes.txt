@@ -1,5 +1,0 @@
-ToDo:
-
-Known bugs:
-Friend list overflows
-Messages overflows
