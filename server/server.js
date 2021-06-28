@@ -8,11 +8,12 @@ const cookieParser = require('cookie-parser')
 const session = require('express-session')
 const { v4: uuidv4 } = require('uuid')
 const bcrypt = require('bcrypt')
+const origin = "http://localhost:3000"
 const PORT = 3001
 
 app.use(express.json())
 app.use(cors({
-  origin: ["http://localhost:3000"],
+  origin: [origin],
   methods: ["GET", "POST"],
   credentials: true
 }))
@@ -31,9 +32,10 @@ app.use(session({
 }))
 
 const db = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  database: 'backtalk'
+  host: 'sql11.freemysqlhosting.net',
+  user: 'sql11421942',
+  password: 'tEp7k99beM',
+  database: 'sql11421942'
 })
 db.connect((err) => {
   if (err) throw err
@@ -109,7 +111,7 @@ const server = app.listen(PORT, () => {
 
 const io = socket(server, {
   cors: {
-    origin: "http://localhost:3000",
+    origin: origin,
   }
 })
 
@@ -120,7 +122,6 @@ io.on("connection", (socket) => {
   // Join a conversation
   const { roomId } = socket.handshake.query
   socket.join(roomId)
-  console.log(`Client ${socket.id} connected joined room ${roomId}`)
 
   // Listen for new messages
   socket.on(NEW_CHAT_MESSAGE_EVENT, (data) => {
@@ -129,7 +130,6 @@ io.on("connection", (socket) => {
 
   // Leave the room if the user closes the socket
   socket.on("disconnect", () => {
-    console.log(`Client ${socket.id} diconnected`)
     socket.leave(roomId)
   })
 })

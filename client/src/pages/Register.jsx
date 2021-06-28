@@ -5,6 +5,7 @@ import { Button, Form, Alert } from 'react-bootstrap'
 
 const Register = () => {
 
+  const origin = "http://localhost:3001"
   const [userReg, setuserReg] = useState('')
   const [passwordReg, setPasswordReg] = useState('')
   const [passwordConfReg, setPasswordConfReg] = useState('')
@@ -29,14 +30,14 @@ const Register = () => {
       setAlertVariant("danger")
       setBlankField("Todos os campos devem ser preenchidos.")
     } else {
-      Axios.post('http://localhost:3001/dupe', {
+      Axios.post(`${origin}/dupe`, {
         username: userReg
       }).then((response) => {
         if (response.data.exists === true) {
           setAlertVariant("danger")
           setBlankField("Utilizador já está registado.")
         } else {
-          Axios.post('http://localhost:3001/register', {
+          Axios.post(`${origin}/register`, {
             username: userReg,
             password: passwordReg,
             passwordConf: passwordConfReg

@@ -7,6 +7,7 @@ import "../Styles.css"
 
 const Login = () => {
 
+  const origin = "http://localhost:3001"
   const [userLog, setUserLog] = useState('')
   const [passwordLog, setPasswordLog] = useState('')
   const [alertVariant, setAlertVariant] = useState('')
@@ -16,7 +17,7 @@ const Login = () => {
 
   Axios.defaults.withCredentials = true
   useEffect(() => {
-    Axios.get("http://localhost:3001/auth").then((response) => {
+    Axios.get(`${origin}/auth`).then((response) => {
       if (response.data.loggedIn === true) {
         window.location = '/messages'
       }
@@ -24,7 +25,7 @@ const Login = () => {
   })
 
   const login = () => {
-    Axios.post('http://localhost:3001/login', {
+    Axios.post(`${origin}/login`, {
       username: userLog,
       password: passwordLog,
     }).then((response) => {

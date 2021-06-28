@@ -7,6 +7,7 @@ import '../Styles.css'
 
 const Messages = () => {
 
+  const origin = "http://localhost:3001"
   const [roomId, setRoomId] = useState('')
   const [newMessage, setNewMessage] = useState('')
   const [newContact, setNewContact] = useState('')
@@ -23,14 +24,14 @@ const Messages = () => {
   Axios.defaults.withCredentials = true
 
   useEffect(() => {
-    Axios.get("http://localhost:3001/auth").then((response) => {
+    Axios.get(`${origin}/auth`).then((response) => {
       if (response.data.loggedIn === true)
         setUser(response.data.user[0].username)
     })
   }, [])
 
   useEffect(() => {
-    Axios.post('http://localhost:3001/retrievecontacts', {
+    Axios.post(`${origin}/retrievecontacts`, {
       username: user,
     }).then((response) => {
       setContacts(response.data)
@@ -68,7 +69,7 @@ const Messages = () => {
   }
 
   const handleNewContact = () => {
-    Axios.post('http://localhost:3001/dupe', {
+    Axios.post(`${origin}/dupe`, {
       username: newContact
     }).then((response) => {
       if (response.data.exists !== true) {
@@ -78,11 +79,11 @@ const Messages = () => {
         setAlertVariant("danger")
         setBlankField("Não pode adicionar o seu contacto.")
       } else {
-        Axios.post('http://localhost:3001/checkmirroredcontacts', {
+        Axios.post(`${origin}/checkmirrorecontacts`, {
           username: user,
           contact: newContact,
         }).then((response) => {
-          Axios.post('http://localhost:3001/addcontact', {
+          Axios.post(`${origin}/addcontact`, {
             username: user,
             contact: newContact,
             conversation: response.data
