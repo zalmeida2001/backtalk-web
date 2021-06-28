@@ -53,6 +53,12 @@ const Register = () => {
     e.target.select()
   }
 
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      register()
+    }
+  }
+
   return (
     <html>
       <head>
@@ -102,6 +108,7 @@ const Register = () => {
                                 placeholder="Confirmar Password"
                                 name="txtPasswordConf"
                                 type="password"
+                                onKeyPress={handleKeyPress}
                                 onClick={selectClick}
                                 onChange={(e) => { (setPasswordConfReg(e.target.value)) }}
                               />

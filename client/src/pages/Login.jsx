@@ -40,6 +40,12 @@ const Login = () => {
     e.target.select()
   }
 
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      login()
+    }
+  }
+
   return (
     <html>
       <head>
@@ -76,6 +82,7 @@ const Login = () => {
                               <Form.Control className="form-control"
                                 placeholder="Password"
                                 type="password"
+                                onKeyPress={handleKeyPress}
                                 onClick={selectClick}
                                 onChange={(e) => { (setPasswordLog(e.target.value)) }}
                               />
