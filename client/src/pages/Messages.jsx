@@ -79,7 +79,7 @@ const Messages = () => {
         setAlertVariant("danger")
         setBlankField("Não pode adicionar o seu contacto.")
       } else {
-        Axios.post(`${origin}/checkmirrorecontacts`, {
+        Axios.post(`${origin}/checkmirroredcontacts`, {
           username: user,
           contact: newContact,
         }).then((response) => {
