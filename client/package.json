@@ -1,5 +1,6 @@
 {
   "name": "routes",
+  "homepage": "https://krokzter.github.io/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -9,6 +10,7 @@
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
     "eslint": "^7.18.0",
+    "gh-pages": "^3.2.3",
     "react": "^17.0.1",
     "react-bootstrap": "^1.6.0",
     "react-chat-elements": "^10.14.0",
@@ -29,7 +31,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
