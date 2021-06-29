@@ -103,7 +103,7 @@ app.post('/login', (req, res) => {
   })
 })
 
-const server = app.listen(PORT, () => {
+const server = app.listen(process.env.PORT || PORT, () => {
   console.log(`Listening on port ${PORT}`)
 })
 
