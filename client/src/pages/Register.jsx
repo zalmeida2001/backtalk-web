@@ -70,7 +70,7 @@ const Register = () => {
         <meta name="author" content="" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossOrigin="anonymous"></script>
       </head>
-      <body className="bg-light">
+      <body className="bg-custom">
         <div id="layoutAuthentication">
           <div id="layoutAuthentication_content">
             <main>
@@ -116,12 +116,12 @@ const Register = () => {
                             </Form.Group>
                           </div>
                           <div className="d-flex align-items-center justify-content-between mt-4 mb-0">
-                            <Button variant="primary" className="mr-3" onClick={register}>Registar</Button>
+                            <Button className="btn-info mr-3" onClick={register}>Registar</Button>
                           </div>
                         </form>
                       </div>
                       <div className="card-footer text-center py-3">
-                        <div className="small"><a href="/login">Já tem conta? Dê Login aqui!</a></div>
+                        <div className="medium"><a className="link-dark" href="/login">Já tem conta? Dê Login aqui!</a></div>
                       </div>
                     </div>
                     <div className="">
@@ -133,15 +133,6 @@ const Register = () => {
                 </div>
               </div>
             </main>
-          </div>
-          <div id="layoutAuthentication_footer">
-            <footer className="py-4 bg-light mt-auto">
-              <div className="container-fluid px-4">
-                <div className="d-flex align-items-center justify-content-between small">
-                  <div className="text-muted">Copyright &copy; BackTalk 2021</div>
-                </div>
-              </div>
-            </footer>
           </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" crossOrigin="anonymous"></script>

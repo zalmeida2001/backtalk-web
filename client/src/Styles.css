@@ -7397,7 +7397,11 @@ textarea.form-control-lg {
 }
 
 .bg-custom {
-  background-color: #111a2b !important;
+  background-color: #1c6e72 !important;
+} /* 148987 003538 0d5356 1c6e72 */
+
+.bg-header {
+  background-color: #f7f7f7 !important;
 }
 
 .bg-primary {
