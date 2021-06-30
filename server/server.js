@@ -32,10 +32,15 @@ app.use(session({
 }))
 
 const db = mysql.createConnection({
+  /*
   host: 'sql11.freemysqlhosting.net',
   user: 'sql11421942',
   password: 'tEp7k99beM',
   database: 'sql11421942'
+  */
+  host: 'localhost',
+  user: 'root',
+  database: 'backtalk'
 })
 db.connect((err) => {
   if (err) throw err
