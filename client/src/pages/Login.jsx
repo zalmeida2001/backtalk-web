@@ -90,7 +90,7 @@ const Login = () => {
                             </Form.Group>
                           </div>
                           <div className="d-flex align-items-center justify-content-between mt-4 mb-0">
-                            <Button variant="info" className="mr-3" onClick={login}>Login</Button>
+                            <Button variant="primary" className="mr-3" onClick={login}>Login</Button>
                           </div>
                         </form>
                       </div>

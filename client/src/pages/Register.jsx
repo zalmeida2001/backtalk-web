@@ -116,7 +116,7 @@ const Register = () => {
                             </Form.Group>
                           </div>
                           <div className="d-flex align-items-center justify-content-between mt-4 mb-0">
-                            <Button className="btn-info mr-3" onClick={register}>Registar</Button>
+                            <Button className="btn-primary mr-3" onClick={register}>Registar</Button>
                           </div>
                         </form>
                       </div>

@@ -125,7 +125,7 @@ const Messages = () => {
                       )}
                     </div>
                     <div className="card-footer">
-                      <button className="btn btn-info rounded" type="button" onClick={() => setModalOpen(true)}>
+                      <button className="btn btn-primary rounded" type="button" onClick={() => setModalOpen(true)}>
                         Adicionar
                       </button>
                       <button className="btn btn-secondary rounded float-right px-3" type="button" onClick={logout}>
@@ -147,7 +147,7 @@ const Messages = () => {
                             key={i}
                             className={`my-1 d-flex flex-column ${message.ownedByCurrentUser ? 'align-self-end align-items-end' : 'align-items-start'}`}
                           >
-                            <div key={i} className={`rounded px-2 py-2 text-wrap message-item ${message.ownedByCurrentUser ? "bg-info text-white" : "bg-secondary text-white"}`}>
+                            <div key={i} className={`rounded px-2 py-2 text-wrap message-item ${message.ownedByCurrentUser ? "bg-primary text-white" : "bg-secondary text-white"}`}>
                               {message.body}
                             </div>
                             <div className={`text-muted small ${message.ownedByCurrentUser ? 'text-right' : ''}`}>
@@ -168,7 +168,7 @@ const Messages = () => {
                         placeholder="Nova mensagem..."
                       />
                       <div className="input-group-append">
-                        <button onClick={handleSendMessage} className="btn btn-info rounded px-4">Enviar</button>
+                        <button onClick={handleSendMessage} className="btn btn-primary rounded px-4">Enviar</button>
                       </div>
                     </div>
                   </div>
